@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - BuyVistas</title>
+    <meta name="description" content="Complete your order">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-sticky">
+        <div class="luxe-container">
+            <div class="header-inner">
+                <button class="mobile-menu-btn" data-mobile-menu-btn aria-label="Toggle menu">
+                    <span data-menu-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </span>
+                </button>
+                <a href="index.html" class="logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="4" fill="#1C1917"/><path d="M8 20L14 12L20 20L26 12L32 20" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 28L14 20L20 28L26 20L32 28" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h1>BuyVistas</h1>
+                </a>
+                <nav class="nav-desktop">
+                    <a href="index.html">Home</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="header-icons">
+                    <a href="cart.html" class="icon-btn cart-link" aria-label="Cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        <span class="cart-count" data-cart-count style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="mobile-menu" data-mobile-menu>
+            <div class="luxe-container">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="min-h-screen" id="checkout-content" data-testid="checkout-page">
+        <!-- Content loaded by JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="luxe-container">
+                <div class="footer-bottom-inner">
+                    <p>&copy; 2024 BuyVistas. All rights reserved.</p>
+                    <div class="footer-payments">
+                        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                        <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard">
+                        <span class="cod-badge">COD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = getCart();
+            if (cart.items.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+            renderCheckoutPage();
+        });
+
+        function renderCheckoutPage() {
+            const cart = getCart();
+            const shipping = calculateShipping(cart.total);
+            const grandTotal = cart.total + shipping;
+            const container = document.getElementById('checkout-content');
+
+            container.innerHTML = `
+                <section class="page-header">
+                    <div class="luxe-container">
+                        <nav class="breadcrumb">
+                            <a href="index.html">Home</a>
+                            <span class="breadcrumb-separator">/</span>
+                            <a href="cart.html">Cart</a>
+                            <span class="breadcrumb-separator">/</span>
+                            <span>Checkout</span>
+                        </nav>
+                        <h1 class="heading-section">Checkout</h1>
+                    </div>
+                </section>
+
+                <section class="section-spacing">
+                    <div class="luxe-container">
+                        <form id="checkout-form" class="checkout-layout">
+                            <!-- Form Fields -->
+                            <div class="checkout-form">
+                                <div class="checkout-section">
+                                    <h2>Contact Information</h2>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Full Name *</label>
+                                            <input type="text" name="customer_name" class="input-underline" placeholder="John Doe" required data-testid="input-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email *</label>
+                                            <input type="email" name="email" class="input-underline" placeholder="john@example.com" required data-testid="input-email">
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label>Phone Number *</label>
+                                            <input type="tel" name="phone" class="input-underline" placeholder="9876543210" required data-testid="input-phone">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="checkout-section">
+                                    <h2>Shipping Address</h2>
+                                    <div class="form-grid">
+                                        <div class="form-group full-width">
+                                            <label>Address *</label>
+                                            <input type="text" name="address" class="input-underline" placeholder="House No, Street Name, Area" required data-testid="input-address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>City *</label>
+                                            <input type="text" name="city" class="input-underline" placeholder="Atlanta" required data-testid="input-city">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>State *</label>
+                                            <input type="text" name="state" class="input-underline" placeholder="Georgia" required data-testid="input-state">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Zip Code *</label>
+                                            <input type="text" name="pincode" class="input-underline" placeholder="30303" required data-testid="input-pincode">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="checkout-section">
+                                    <h2>Payment Method</h2>
+                                    <div class="payment-method">
+                                        <div class="payment-radio">
+                                            <div class="payment-radio-inner"></div>
+                                        </div>
+                                        <div class="payment-info">
+                                            <h4>Cash on Delivery (COD)</h4>
+                                            <p>Pay when you receive your order</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Summary -->
+                            <div>
+                                <div class="checkout-summary" data-testid="checkout-summary">
+                                    <h2>Order Summary</h2>
+
+                                    <div class="checkout-items">
+                                        ${cart.items.map(item => `
+                                            <div class="checkout-item">
+                                                <img src="${item.product.image}" alt="${item.product.name}">
+                                                <div class="checkout-item-info">
+                                                    <p>${item.product.name}</p>
+                                                    <p>Qty: ${item.quantity}</p>
+                                                    <p>${formatPrice(item.subtotal)}</p>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+
+                                    <div class="order-summary-row">
+                                        <span class="label">Subtotal</span>
+                                        <span>${formatPrice(cart.total)}</span>
+                                    </div>
+                                    <div class="order-summary-row">
+                                        <span class="label">Shipping</span>
+                                        <span>${shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
+                                    </div>
+                                    <div class="order-summary-row total">
+                                        <span>Total</span>
+                                        <span data-testid="checkout-total">${formatPrice(grandTotal)}</span>
+                                    </div>
+
+                                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;" data-testid="place-order-btn">
+                                        Place Order
+                                    </button>
+
+                                    <p class="terms">
+                                        By placing this order, you agree to our <a href="terms.html">Terms</a> and <a href="privacy-policy.html">Privacy Policy</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            `;
+
+            // Form submission handler
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handlePlaceOrder();
+            });
+        }
+
+        function handlePlaceOrder() {
+            // Generate a random order ID
+            const orderId = 'ORD' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substr(2, 4).toUpperCase();
+            const cart = getCart();
+            const shipping = calculateShipping(cart.total);
+            const grandTotal = cart.total + shipping;
+
+            // Show order confirmation
+            const container = document.getElementById('checkout-content');
+            container.innerHTML = `
+                <section class="section-spacing" data-testid="order-confirmation">
+                    <div class="luxe-container">
+                        <div class="order-confirmation">
+                            <div class="order-success-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <h1>Order Placed Successfully!</h1>
+                            <p>Thank you for your order. Your order ID is:</p>
+                            <p class="order-id" data-testid="order-id">#${orderId}</p>
+
+                            <div class="order-next-steps">
+                                <h3>What's Next?</h3>
+                                <ul>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        You will receive an order confirmation email shortly
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                                        Your order will be shipped within 2-3 business days
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                        Pay ${formatPrice(grandTotal)} on delivery (COD)
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <a href="shop.html" class="btn-primary">Continue Shopping</a>
+                        </div>
+                    </div>
+                </section>
+            `;
+
+            // Clear the cart
+            clearCart();
+        }
+    </script>
+</body>
+</html>
